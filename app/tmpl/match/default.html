@@ -1,0 +1,117 @@
+<div class="match__header">
+  <div class="match__header-container container">
+    <h2 class="dropdown-toggle" data-toggle="dropdown">
+        {{competition}}
+    </h2>
+    <ul class="dropdown-menu match__header__dropdown--competitions" role="menu">
+      {{#competitions}}
+        {{#name}}
+          <li><a href="{{ url }}">{{name}}</a></li>
+        {{/name}}
+      {{/competitions}}
+    </ul>
+  </div>
+</div>
+
+<h2 class="match__prompt js-match__prompt--initial">So you think {{teams.team1.name}} can beat {{teams.team2.name}}?</h2>
+
+<!-- @todo need to get the real league name + round in here -->
+<h2 class="match__prompt js-match__prompt--league_round hidden">UEFA Champions League (Round 1)</h2>
+
+<h2 class="match__prompt js-match__prompt--team_1_win hidden">Good luck to {{teams.team1.name}}!</h2>
+<h2 class="match__prompt js-match__prompt--team_2_win hidden">Good luck to {{teams.team2.name}}!</h2>
+<h2 class="match__prompt js-match__prompt--draw hidden">Playing it safe?</h2>
+
+<h3 class="match__ground">{{venue}}</h3>
+
+<div class="match__status__holder">
+    <div class="row">
+        <div class="container">
+            <!-- <div class="match__status match__status--live">LIVE</div> -->
+            <!-- <div class="match__status match__status--result">RESULT</div> -->
+        </div>
+    </div>
+</div>
+
+<div class="match__contents">
+
+    <a name="comments"></a>
+    <div class="match__container container">
+
+      <div class="match__teams">
+        <div class="match__team match__team__home col-xs-6 col-md-4">
+          <div class="match__team__shirt">
+            <img src="{{teams.team1.shirt}}" />
+          </div>
+          <strong class="match__team__name__1">{{teams.team1.name}}</strong>
+          <!-- </br>
+          <span>Supporters: {{teams.team1.supporters}}</span> -->
+
+          <ul class="match__team__goals js-match__team1-goals">
+            {{#score.team1.goals}}
+              <li>{{name}} ({{minute}}")</li>
+            {{/score.team1.goals}}
+          </ul>
+        </div>
+
+        <div class="match__team match__team__away col-xs-6 col-md-4">
+          <div class="match__team__shirt">
+            <img src="{{teams.team2.shirt}}" />
+          </div>
+          <strong class="match__team__name__2">{{teams.team2.name}}</strong>
+          <!-- </br>
+          <span>Supporters: {{teams.team2.supporters}}</span> -->
+
+          <ul class="match__team__goals js-match__team2-goals">
+            {{#score.team2.goals}}
+              <li>{{name}} ({{minute}}")</li>
+            {{/score.team2.goals}}
+          </ul>
+        </div>
+      </div>
+
+      <div class="js-match-widget__match-status"></div>
+      <div class="js-match-widget__prediction-status"></div>
+
+      <section class="match__prediction__bar">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3><span>What the fans think</span></h3>
+          </div>
+
+          <div class="col-xs-12 match__prediction__bar__crowd" style="background-position: {{currentPredictions.crowdPercentage}}% 0%;">
+            <span class="match__outcome__prediction--stat" style="width: {{currentPredictions.team1Percentage}}%">{{currentPredictions.team1Percentage}}<span class="match__outcome__prediction--stat__symbol">%</span>
+        <br /><span class="match__outcome__prediction--stat__description">home win</span></span>
+
+        <span class="match__outcome__prediction--stat match__outcome__prediction--stat--draw" style="width: {{currentPredictions.drawPercentage}}%">{{currentPredictions.drawPercentage}}<span class="match__outcome__prediction--stat__symbol">%</span>
+        <br /><span class="match__outcome__prediction--stat__description">draw</span></span>
+
+        <span class="match__outcome__prediction--stat" style="width: {{currentPredictions.team2Percentage}}%">{{currentPredictions.team2Percentage}}<span class="match__outcome__prediction--stat__symbol">%</span>
+        <br /><span class="match__outcome__prediction--stat__description">away win</span></span>
+          </div>
+
+          <div class="match__prediction__bar__holder">
+            <div class="match__prediction__bar match__prediction__bar--home" style="width: {{currentPredictions.team1Percentage}}%; background-color: {{teams.team1.color}};"></div>
+            <div class="match__prediction__bar match__prediction__bar--draw" style="width: {{currentPredictions.drawPercentage}}%"></div>
+            <div class="match__prediction__bar match__prediction__bar--away" style="width: {{currentPredictions.team2Percentage}}%; background-color: {{teams.team2.color}};"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="match__comments">
+        <div class="row">
+            <div class="container clearfix">
+                <div class="col-md-9 match__comment">
+                    <p class="match__comment--title">There are over <strong>365 comments</strong> on this game, the most popular comment is:</p>
+                    <p class="match__comment--quote">"I think Manchester United are going to get thrashed, they've been rubbish lately!"</p>
+                    <p class="match__comment--commenter"><span class="avatar--small avatar--default"></span> Ali Stone</p>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-block btn--say js-goto-anchor"><span class="fb-icon fb-icon-comment"></span>Say what you think</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
